@@ -2,4 +2,4 @@ Co jeszcze zrobić?
 1. Dodać jakies proste GUI za pomca IMgui albo Qt, jeszcze nie wiem.
 2. Dodać w każdym momencie gry sprawdzenie czy jeszcze jest szansa na wygranie normalne albo idealne i przycisk do resetu.
 3. Jeśli odpowiedź "Czy jest jeszcze szansa na wygranie jakiekolwiek" to tak to chce zrobić obliczanie i podpowiadanie 
-następnego ruchu.
+następnego ruchu
