@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/exit.png</file>
+        <file>images/logo.png</file>
+        <file>images/new_game.png</file>
+        <file>images/rules.png</file>
+        <file>images/1.png</file>
+        <file>images/2.png</file>
+        <file>images/3.png</file>
+        <file>images/4.png</file>
+        <file>images/5.png</file>
+        <file>images/6.png</file>
+        <file>images/7.png</file>
+        <file>images/A.png</file>
+        <file>images/B.png</file>
+        <file>images/C.png</file>
+        <file>images/D.png</file>
+        <file>images/E.png</file>
+        <file>images/F.png</file>
+        <file>images/G.png</file>
+        <file>images/moves.png</file>
+        <file>images/time.png</file>
+        <file>images/button-brown.png</file>
+        <file>images/button-gray.png</file>
+        <file>images/button-selected.png</file>
+    </qresource>
+</RCC>
