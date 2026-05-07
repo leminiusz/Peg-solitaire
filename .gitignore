@@ -16,7 +16,5 @@ Makefile
 Makefile.Debug
 Makefile.Release
 
-*.exe
-*.dll
 *.o
 *.obj
