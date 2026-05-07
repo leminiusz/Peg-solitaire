@@ -84,14 +84,21 @@ void GameWindow::updateField(int r,int c)
     auto *btn = findChild<QPushButton*>(obj);
     if(!btn) return;
 
+    bool isSelected = (selected.first == r && selected.second == c);
+    bool isValidDest = validDestinations.contains({r, c});
+
     switch(model.getStanPola(r,c)){
     case StanPola::PIONEK:
         btn->show();
         btn->setEnabled(true);
         btn->setIcon(pieceIcon);
         btn->setCheckable(true);
-        btn->setChecked(selected.first==r && selected.second==c);
-        btn->setStyleSheet("border:none; background:transparent;");
+        btn->setChecked(isSelected);
+        if (isSelected) {
+            btn->setStyleSheet("border: 2px solid #0066FF; background:transparent;");
+        } else {
+            btn->setStyleSheet("border:none; background:transparent;");
+        }
         break;
     case StanPola::PUSTE:
         btn->show();
@@ -99,7 +106,11 @@ void GameWindow::updateField(int r,int c)
         btn->setCheckable(false);
         btn->setChecked(false);
         btn->setIcon(QIcon());
-        btn->setStyleSheet("border:none; background:transparent;");
+        if (isValidDest) {
+            btn->setStyleSheet("border: 2px solid #00CC00; background-color: rgb(200,200,200);");
+        } else {
+            btn->setStyleSheet("border:none; background-color: rgb(200,200,200);");
+        }
         break;
     case StanPola::NIEDOSTEPNE:
         btn->hide();
@@ -119,6 +130,12 @@ void GameWindow::handleFieldClick()
     if(model.getStanPola(r,c)==StanPola::PIONEK && selected.first==-1){
         selected = {r,c};
         btn->setChecked(true);
+        auto moves = model.getMozliweRuchyZ(r, c);
+        validDestinations.clear();
+        for (const auto& m : moves) {
+            validDestinations.append({m.first, m.second});
+        }
+        initGuiFromModel();
         return;
     }
 
@@ -140,6 +157,7 @@ void GameWindow::handleFieldClick()
             catch(const wyjatek_samotnika&) { }
         }
         selected={-1,-1};
+        validDestinations.clear();
         initGuiFromModel();
         checkEnd();
     }
@@ -157,6 +175,7 @@ void GameWindow::on_button_new_game_clicked()
 {
     model = SamotnikModel();
     selected = {-1,-1};
+    validDestinations.clear();
     resetCounters();
     initGuiFromModel();
     checkEnd();

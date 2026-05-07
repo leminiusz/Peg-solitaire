@@ -109,3 +109,32 @@ bool SamotnikModel::czyWygranaIdealna() const {
 bool SamotnikModel::czyWygrana() const {
     return liczbaPionkow == 1;
 }
+
+std::vector<std::pair<int,int>> SamotnikModel::getMozliweRuchyZ(int r, int c) const {
+    std::vector<std::pair<int,int>> destinations;
+    if (plansza[r][c] != StanPola::PIONEK) {
+        return destinations;
+    }
+
+    char kierunki[] = {'L', 'R', 'U', 'D'};
+    for (char k : kierunki) {
+        int dr = 0, dc = 0;
+        switch (k) {
+            case 'L': dc = -1; break;
+            case 'R': dc = 1;  break;
+            case 'U': dr = -1; break;
+            case 'D': dr = 1;  break;
+        }
+        int r2 = r + dr;
+        int c2 = c + dc;
+        int r3 = r + 2 * dr;
+        int c3 = c + 2 * dc;
+
+        if (czyWPlanszy(r2, c2) && czyWPlanszy(r3, c3) &&
+            plansza[r2][c2] == StanPola::PIONEK &&
+            plansza[r3][c3] == StanPola::PUSTE) {
+            destinations.emplace_back(r3, c3);
+        }
+    }
+    return destinations;
+}

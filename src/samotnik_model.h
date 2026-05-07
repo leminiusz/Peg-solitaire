@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <utility>
 #include "wyjatki.h"
 
 enum class StanPola { PUSTE, PIONEK, NIEDOSTEPNE };
@@ -20,6 +21,7 @@ public:
     bool czyMozliweRuchy() const;
     bool czyWygranaIdealna() const;
     bool czyWygrana() const;
+    std::vector<std::pair<int,int>> getMozliweRuchyZ(int r, int c) const;
 
 private:
     std::vector<std::vector<StanPola>> plansza;

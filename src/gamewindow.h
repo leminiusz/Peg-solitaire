@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QPair>
+#include <QVector>
 #include <QTime>
 #include <QTimer>
 #include <QLabel>
@@ -35,6 +36,7 @@ private:
     Ui::GameWindow *ui;
     SamotnikModel model;
     QPair<int,int> selected{-1,-1};
+    QVector<QPair<int,int>> validDestinations;
     QTimer *gameTimer;
     QTime startTime;
     int moveCount;
